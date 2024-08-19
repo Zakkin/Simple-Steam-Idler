@@ -3,14 +3,14 @@ const SteamUser = require('steam-user');
 const user = new SteamUser();
 
 const logOnOptions = {
-	accountName: 'x02dz005traoppy',  //Enter here your account login
-	password: 'MZRPIW4YD1NT116'		 //Enter your password
+	accountName: process.env.STEAM_USERNAME,  // Используем переменные окружения
+	password: process.env.STEAM_PASSWORD
 }
 
 user.logOn(logOnOptions);
 
 user.on('loggedOn', () => {
 	console.log(logOnOptions.accountName + ' - Successfully logged on');
-	user.setPersona(1);                 //1 - online, 7 - invisible
-	user.gamesPlayed([440,730,570]);    //List app IDs
+	user.setPersona(1);  // 1 - онлайн, 7 - невидимый
+	user.gamesPlayed([440, 730, 570]);  // Список ID приложений
 });
